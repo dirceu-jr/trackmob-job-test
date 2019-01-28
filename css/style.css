@@ -52,3 +52,32 @@ main {
 .thankyou p {
     width: 80%;
 }
+
+footer {
+    background: #039be5;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer .logo {
+    margin: 40px 0;
+}
+
+footer .col-4 p {
+    color: #fff;
+    font-size: 0.9em;
+    line-height: 1; 
+    margin: 25px 10px 0;
+}
+
+footer .col-7 {
+    text-align: right;
+}
+
+footer .copyright {
+    color: #fff;
+    font-size: 0.9em;
+    margin: 34px 0;
+}

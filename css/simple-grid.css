@@ -242,9 +242,9 @@ p {
   }
 }
 
-@media only screen and (min-width: 60em) { /* 960px */
+@media only screen and (min-width: 80em) {
   .container {
-    width: 75%;
-    max-width: 60rem;
+    width: 85%;
+    max-width: 80rem;
   }
 }

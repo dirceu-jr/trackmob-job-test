@@ -31,5 +31,24 @@ header {
 }
 
 .logo {
-    margin: 24px 0;
+    margin: 21px 0;
+}
+
+main {
+    background: url("../img/bg.png");
+    /* background-size: 1440px; */
+    background-position: center -118px;
+}
+
+.thankyou {
+    padding: 170px 0;
+}
+
+.thankyou h1 {
+    color: #2196f3;
+    text-shadow: 0px 0px 3px #fff;
+}
+
+.thankyou p {
+    width: 80%;
 }

@@ -1,0 +1,35 @@
+html {
+    background: #013247;
+}
+
+header {
+    background: #fff;
+    height: 112px;
+}
+
+.social-media {
+    text-align: right;
+    line-height: 112px;
+    font-weight: bold;
+    color: #757575;
+    font-size: 0.9em;
+}
+
+.social-media .fb,
+.social-media .tw,
+.social-media .insta {
+    vertical-align: middle;
+    margin: 0 0 0 16px;
+}
+
+.social-media a {
+    text-decoration: none;
+}
+
+.social-media a:hover img {
+    opacity: 0.5;
+}
+
+.logo {
+    margin: 24px 0;
+}

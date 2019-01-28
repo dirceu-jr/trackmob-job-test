@@ -35,9 +35,10 @@ header {
 }
 
 main {
-    background: url("../img/bg.png");
+    background: url("../img/bg.png") no-repeat;
     /* background-size: 1440px; */
     background-position: center -118px;
+    margin-bottom: 50px;
 }
 
 .thankyou {
@@ -53,6 +54,45 @@ main {
     width: 80%;
 }
 
+main .box {
+    background: #fff;
+    border-radius: 5px;
+    padding: 40px;
+}
+
+main .box h2 {
+    color: #424242;
+    font-size: 1.5em;
+    margin-top: 0;
+}
+
+main .box1 {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+main .box2 {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+main .box3 {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background: #f5f5f5;
+}
+
+main .hr div {
+    min-height: 1px !important;
+}
+
+main .hr .box {
+    background: #eee;
+    padding: 0;
+}
+
 footer {
     background: #039be5;
 }
@@ -65,14 +105,14 @@ footer .logo {
     margin: 40px 0;
 }
 
-footer .col-4 p {
+footer .col-4-sm p {
     color: #fff;
     font-size: 0.9em;
     line-height: 1; 
     margin: 25px 10px 0;
 }
 
-footer .col-7 {
+footer .col-7-sm {
     text-align: right;
 }
 

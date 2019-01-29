@@ -3,6 +3,7 @@ var Donation = (function() {
     // form fields for valitation
     var form_fields = ["donation-value", "name", "surname", "email", "cpf", "card-number", "cvv", "card-validity"];
 
+    // changes donation text with data
     function render_value_confirmation(periodicity, donation_value) {
         var periodicity_map = {
             "unica": "única",
@@ -14,30 +15,23 @@ var Donation = (function() {
         $(".value-confirmation").html(donation_value + " " + periodicity_map[periodicity]);
     }
 
-    function on_form_submittion() {
-        // validation
-        for (field in form_fields) {
-            var
-                form_field = $("input[name='" + form_fields[field] + "']"),
-                label = $("label[for='" + form_fields[field] + "']")
-            ;
-
-            if (form_field.val() == "") {
-                form_field.css('border', '1px solid #ff5252');
-                label.css('color', '#ff5252');
-            } else {
-                form_field.css('border', '1px solid #d2d2d2');
-                label.css('color', '#9e9e9e');
-            }
-        }
-    }
-
     function inputs_on_blur() {
         for (field in form_fields) {
             var form_field = $("input[name='" + form_fields[field] + "']");
 
             form_field.blur(function() {
-                on_form_submittion();
+                var
+                    label = $("label[for='" + this.name + "']"),
+                    $this = $(this)
+                ;
+                
+                if ($this.val() == "") {
+                    $this.css('border', '1px solid #ff5252');
+                    label.css('color', '#ff5252');
+                } else {
+                    $this.css('border', '1px solid #d2d2d2');
+                    label.css('color', '#9e9e9e');
+                }
             });
         }
     }
@@ -87,18 +81,13 @@ var Donation = (function() {
             render_value_confirmation($("[name='periodicity']").val(), this.value);
         });
 
-        // setup validation on form submition
-        $("#the-form").submit(function() {
-            on_form_submittion();
-            return false;
-        });
-
         // setup validation on input blur
         inputs_on_blur();
 
         // setup masks
         setup_masks();
 
+        // setup validation on form submition
         $("#the-form").validate({
             rules: {
                 "email": {

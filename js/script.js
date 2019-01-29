@@ -16,8 +16,6 @@ var Donation = (function() {
 
     function on_form_submittion() {
         // validation
-        var has_invalid = false;
-
         for (field in form_fields) {
             var
                 form_field = $("input[name='" + form_fields[field] + "']"),
@@ -25,20 +23,12 @@ var Donation = (function() {
             ;
 
             if (form_field.val() == "") {
-                has_invalid = true;
-
                 form_field.css('border', '1px solid #ff5252');
                 label.css('color', '#ff5252');
             } else {
                 form_field.css('border', '1px solid #d2d2d2');
                 label.css('color', '#9e9e9e');
             }
-        }
-
-        if (has_invalid) {
-            $(".warning-box").show();
-        } else {
-            $(".warning-box").hide();
         }
     }
 
@@ -50,6 +40,12 @@ var Donation = (function() {
                 on_form_submittion();
             });
         }
+    }
+
+    function setup_masks() {
+        $("input[name='cpf']").mask('000.000.000-00', {reverse: true});
+        $("input[name='card-number']").mask('0000 0000 0000 0000');
+        $("input[name='card-validity']").mask('00/00');
     }
 
     function init() {
@@ -71,6 +67,43 @@ var Donation = (function() {
 
         // setup validation on input blur
         inputs_on_blur();
+
+        // setup masks
+        setup_masks();
+
+        $("#the-form").validate({
+            rules: {
+                "email": {
+                    required: true,
+                    email: true
+                },
+                "card-number": {
+                    required: true,
+                    creditcard: true
+                },
+                "cpf": {
+                    required: true,
+                    cpfBR: true
+                },
+                "cvv": {
+                    required: true,
+                    minlength: 3
+                }
+            },
+            invalidHandler: function(event, validator) {
+                // 'this' refers to the form
+                var errors = validator.numberOfInvalids();
+                if (errors) {
+                    $(".warning-box").show();
+                } else {
+                    $(".warning-box").hide();
+                }
+            },
+            submitHandler: function() {
+                console.log("valid");
+                $(".warning-box").hide();
+            }
+        });
     }
 
     return {

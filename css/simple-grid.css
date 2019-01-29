@@ -244,7 +244,7 @@ p {
 
 @media only screen and (min-width: 80em) {
   .container {
-    width: 85%;
+    width: 100%;
     max-width: 80rem;
   }
 }

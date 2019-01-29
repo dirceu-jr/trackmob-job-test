@@ -235,3 +235,7 @@ input.error {
 label.error {
     display: none !important;
 }
+
+.row.success {
+    display: none;
+}

@@ -15,6 +15,7 @@ var Donation = (function() {
         $(".value-confirmation").html(donation_value + " " + periodicity_map[periodicity]);
     }
 
+    // handle blur of inputs elements
     function inputs_on_blur() {
         for (field in form_fields) {
             var form_field = $("input[name='" + form_fields[field] + "']");
@@ -24,7 +25,7 @@ var Donation = (function() {
                     label = $("label[for='" + this.name + "']"),
                     $this = $(this)
                 ;
-                
+
                 if ($this.val() == "") {
                     $this.css('border', '1px solid #ff5252');
                     label.css('color', '#ff5252');
@@ -36,6 +37,7 @@ var Donation = (function() {
         }
     }
 
+    // setups masks using jquery.mask
     function setup_masks() {
         $("input[name='cpf']").mask('000.000.000-00', {reverse: true});
         $("input[name='card-number']").mask('0000 0000 0000 0000');
@@ -43,6 +45,13 @@ var Donation = (function() {
     }
 
     function submit_handler() {
+
+        // disabled submit button to avoid double click/submit
+        var button = $("#the-form button[type='submit']");
+        button.attr("disabled", "disabled");
+        button.html("Enviando...");
+
+        // makes request to Firebase's API
         var request = $.ajax({
             url: "https://frontend-test-trackmob.firebaseio.com/253c0d77-7095-48a0-8114-6ea307ae743b/dirceup/donors.json",
             method: "POST",
@@ -66,6 +75,8 @@ var Donation = (function() {
         });
         
         request.done(function(msg) {
+            $("#the-form").hide();
+            $(".row.success").show();
             console.log(msg);
         });
     }

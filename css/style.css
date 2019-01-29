@@ -160,6 +160,7 @@ input[type="text"] {
     background: #fff;
     border-radius: 5px;
     margin: 0 0 20px 0;
+    display: none;
 }
 
 .warning {
@@ -217,7 +218,7 @@ input[type="text"] {
     background: #ff9800;
     font-size: 1.2em;
     color: #fff;
-    padding: 10px;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;

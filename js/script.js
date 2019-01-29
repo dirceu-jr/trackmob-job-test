@@ -48,6 +48,34 @@ var Donation = (function() {
         $("input[name='card-validity']").mask('00/00');
     }
 
+    function submit_handler() {
+        var request = $.ajax({
+            url: "https://frontend-test-trackmob.firebaseio.com/253c0d77-7095-48a0-8114-6ea307ae743b/dirceup/donors.json",
+            method: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: JSON.stringify({
+                "first_name": $("input[name='name']").val(),
+                "last_name": $("input[name='surname']").val(),
+                "complete_name": $("input[name='name']").val() + " " + $("input[name='surname']").val(),
+                "phone": "4123456789",
+                "cellphone": "41987654321",
+                "gender": "male",
+                "birthdate": "1990-01-01",
+                "document": $("input[name='cpf']").cleanVal(),
+                "card_number": $("input[name='card-number']").cleanVal(),
+                "cvv": $("input[name='cvv']").val(),
+                "validity​": $("input[name='card-validity']").val(),
+                "accept_contact": $("input[name='accept-ngo-info']").prop("checked"),
+                "accept_readjustment": false
+            })
+        });
+        
+        request.done(function(msg) {
+            console.log(msg);
+        });
+    }
+
     function init() {
         
         // renders donation value confirmation
@@ -91,7 +119,6 @@ var Donation = (function() {
                 }
             },
             invalidHandler: function(event, validator) {
-                // 'this' refers to the form
                 var errors = validator.numberOfInvalids();
                 if (errors) {
                     $(".warning-box").show();
@@ -100,8 +127,9 @@ var Donation = (function() {
                 }
             },
             submitHandler: function() {
-                console.log("valid");
                 $(".warning-box").hide();
+
+                submit_handler();
             }
         });
     }
